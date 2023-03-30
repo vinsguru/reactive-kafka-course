@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  kafka1:
+    image: vinsdocker/kafka
+    container_name: kafka1
+    ports:
+    - "8081:8081"
+    environment:
+      - KAFKA_CLUSTER_ID=OTMwNzFhYTY1ODNiNGE5OT
+    volumes:
+    - ./props/s1.properties:/kafka/config/kraft/server.properties
+    - ./data/b1:/tmp/kafka-logs
+  kafka2:
+    image: vinsdocker/kafka
+    container_name: kafka2
+    ports:
+    - "8082:8082"
+    environment:
+      - KAFKA_CLUSTER_ID=OTMwNzFhYTY1ODNiNGE5OT
+    volumes:
+    - ./props/s2.properties:/kafka/config/kraft/server.properties
+    - ./data/b2:/tmp/kafka-logs     
+  kafka3:
+    image: vinsdocker/kafka
+    container_name: kafka3
+    ports:
+    - "8083:8083"
+    environment:
+      - KAFKA_CLUSTER_ID=OTMwNzFhYTY1ODNiNGE5OT
+    volumes:
+    - ./props/s3.properties:/kafka/config/kraft/server.properties
+    - ./data/b3:/tmp/kafka-logs           

@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  kafka1:
+    image: vinsdocker/kafka
+    container_name: kafka
+    ports:
+    - "9092:9092"
+    environment:
+      KAFKA_CLUSTER_ID: OTMwNzFhYTY1ODNiNGE5OT
+    volumes:
+    - ./props/server.properties:/kafka/config/kraft/server.properties
+    - ./data:/tmp/kafka-logs
