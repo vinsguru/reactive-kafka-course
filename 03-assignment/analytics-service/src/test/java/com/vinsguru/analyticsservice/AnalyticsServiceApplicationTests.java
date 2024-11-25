@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-@AutoConfigureWebTestClient
+@AutoConfigureWebTestClient(timeout = "10000") // this timeout is optional
 class AnalyticsServiceApplicationTests extends AbstractIntegrationTest {
 
 	@Autowired
