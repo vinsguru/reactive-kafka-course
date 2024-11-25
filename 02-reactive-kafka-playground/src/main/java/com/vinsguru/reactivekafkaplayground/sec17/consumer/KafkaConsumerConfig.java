@@ -1,6 +1,7 @@
 package com.vinsguru.reactivekafkaplayground.sec17.consumer;
 
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import org.springframework.boot.ssl.SslBundles;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.reactive.ReactiveKafkaConsumerTemplate;
@@ -13,8 +14,8 @@ import java.util.List;
 public class KafkaConsumerConfig {
 
     @Bean
-    public ReceiverOptions<String, DummyOrder> receiverOptions(KafkaProperties kafkaProperties){
-        return ReceiverOptions.<String, DummyOrder>create(kafkaProperties.buildConsumerProperties())
+    public ReceiverOptions<String, DummyOrder> receiverOptions(KafkaProperties kafkaProperties, SslBundles sslBundles){
+        return ReceiverOptions.<String, DummyOrder>create(kafkaProperties.buildConsumerProperties(sslBundles))
                 .consumerProperty(JsonDeserializer.REMOVE_TYPE_INFO_HEADERS, "false")
                 .consumerProperty(JsonDeserializer.USE_TYPE_INFO_HEADERS, false)
                 .consumerProperty(JsonDeserializer.VALUE_DEFAULT_TYPE, DummyOrder.class)

@@ -3,6 +3,7 @@ package com.vinsguru.productservice.config;
 import com.vinsguru.productservice.event.ProductViewEvent;
 import com.vinsguru.productservice.service.ProductViewEventProducer;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import org.springframework.boot.ssl.SslBundles;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.reactive.ReactiveKafkaProducerTemplate;
@@ -13,8 +14,8 @@ import reactor.kafka.sender.SenderOptions;
 public class KafkaProducerConfig {
 
     @Bean
-    public SenderOptions<String, ProductViewEvent> senderOptions(KafkaProperties properties){
-        return SenderOptions.create(properties.buildProducerProperties());
+    public SenderOptions<String, ProductViewEvent> senderOptions(KafkaProperties properties, SslBundles sslBundles){
+        return SenderOptions.create(properties.buildProducerProperties(sslBundles));
     }
 
     @Bean

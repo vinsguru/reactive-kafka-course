@@ -16,8 +16,8 @@ import java.util.List;
 public class KafkaConsumerConfig {
 
     @Bean
-    public ReceiverOptions<String, ProductViewEvent> receiverOptions(KafkaProperties properties){
-        return ReceiverOptions.<String, ProductViewEvent>create(properties.buildConsumerProperties(null))
+    public ReceiverOptions<String, ProductViewEvent> receiverOptions(KafkaProperties properties, SslBundles sslBundles){
+        return ReceiverOptions.<String, ProductViewEvent>create(properties.buildConsumerProperties(sslBundles))
                               .consumerProperty(JsonDeserializer.VALUE_DEFAULT_TYPE, ProductViewEvent.class)
                               .consumerProperty(JsonDeserializer.USE_TYPE_INFO_HEADERS, false)
                               .subscription(List.of("product-view-events"));
